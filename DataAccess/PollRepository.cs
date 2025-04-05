@@ -9,7 +9,7 @@ namespace DataAccess
     /// <summary>
     /// Handles CRUD operations for Poll entities. 
     /// </summary>
-    class PollRepository
+    public class PollRepository
     {
     }
 }

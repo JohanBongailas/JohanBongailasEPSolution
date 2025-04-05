@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess
 {
-    class PollDbContext
+    public class PollDbContext
     {
+
     }
 }
