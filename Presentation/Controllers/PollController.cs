@@ -6,9 +6,10 @@ namespace Presentation.Controllers
     public class PollController : Controller
     {
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] PollRepository pollRepository)
         {
-            return View();
+            var polls = pollRepository.GetPolls();
+            return View(polls);
         }
 
         [HttpPost]

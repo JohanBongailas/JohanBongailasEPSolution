@@ -8,12 +8,22 @@
     @* Display the success message from TempData if present *@
     @if (TempData["Message"] != null)
     {
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible autoDismissAlert fade show" role="alert">
             @TempData["Message"]
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+
+        <script>
+            setTimeout(function () {
+                var alertEl = document.getElementsByClassName('autoDismissAlert')[0];
+                if (alertEl) {
+                    var bsAlert = bootstrap.Alert.getOrCreateInstance(alertEl);
+                    bsAlert.close();
+                }
+            }, 4000); // Auto-dismiss after 4 seconds
+        </script>
     }
 
     <p class="text-center">
@@ -21,7 +31,7 @@
     </p>
 
     <ul class="list-group">
-        @foreach (var poll in Model.Polls)
+        @foreach (var poll in Model)
         {
             <li class="list-group-item">
                 <strong>@poll.Title</strong><br />
@@ -29,6 +39,7 @@
                 Option 2: @poll.Option2Text - Votes: @poll.Option2VotesCount<br />
                 Option 3: @poll.Option3Text - Votes: @poll.Option3VotesCount
             </li>
+            <button class="btn btn-primary">Vote</button>
         }
     </ul>
 </div>
