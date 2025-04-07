@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Poll List";
+}
+
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4">Poll List</h2>
+
+    @* Display the success message from TempData if present *@
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <p class="text-center">
+        <a href="@Url.Action("CreatePollForm", "Poll")" class="btn btn-primary btn-lg">Create a New Poll</a>
+    </p>
+
+    <ul class="list-group">
+        @foreach (var poll in Model.Polls)
+        {
+            <li class="list-group-item">
+                <strong>@poll.Title</strong><br />
+                Option 1: @poll.Option1Text - Votes: @poll.Option1VotesCount<br />
+                Option 2: @poll.Option2Text - Votes: @poll.Option2VotesCount<br />
+                Option 3: @poll.Option3Text - Votes: @poll.Option3VotesCount
+            </li>
+        }
+    </ul>
+</div>
